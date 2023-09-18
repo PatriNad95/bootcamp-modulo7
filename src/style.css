@@ -95,3 +95,23 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.showCard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button {
+  color: white;
+  background-color: green;
+  margin-bottom: 20px;
+}
+
+h4 {
+  margin: 0px;
+}
+
+h2 {
+  margin: 5px;
+}

@@ -8,7 +8,17 @@
   </head>
   <body>
     <div id="app">
-      <h1>TypeScript Sandbox</h1>
+      <div class="showCard">
+        <h4>Puntuación</h4>
+        <h2 id="score"></h2>
+        <h2 id="message"></h2>
+      </div>
+      <div class="showCard">
+        <button class="button" id="askCard">Pide Carta</button>
+        <button class="button" id="noMoreCards">Plantarse</button>
+        <button class="button" id="startAgain">Empezar de nuevo</button>
+        <img id="card" src="https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"></img>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
