@@ -1,71 +1,95 @@
-import { Mensajes, score } from "./modelo";
+import { score } from "./modelo";
 import { mostrarCarta } from "./motor";
 
-const buttonAsk = document.getElementById("askCard");
-
-const noMoreCards = document.getElementById("noMoreCards");
-
-const message = document.getElementById("message");
-
-const startAgain = document.getElementById("startAgain");
-
-export const pideCarta = (carta: number): void => {
-  const newCardShown = document.getElementById("card");
-  let puntuacion = 0;
-  if (carta === 1) {
-    puntuacion = 1;
-  } else if (carta === 10 || carta === 11 || carta === 12) {
-    puntuacion = 0.5;
+export function muestraPuntuacion() {
+  const scoreHtml = document.getElementById("score");
+  if (
+    scoreHtml !== null &&
+    scoreHtml !== undefined &&
+    scoreHtml instanceof HTMLHeadingElement
+  ) {
+    scoreHtml.innerHTML = score.puntos.toString();
   } else {
-    puntuacion = carta;
+    console.error("El elemento con id score no es un elemento h1");
   }
+}
+
+export function pintarCarta(carta: number): void {
+  const newCardShown = document.getElementById("card");
   if (
     newCardShown !== null &&
     newCardShown !== undefined &&
     newCardShown instanceof HTMLImageElement
   ) {
     newCardShown.src = mostrarCarta(carta);
-    score.puntos = score.puntos + puntuacion;
-    muestraPuntuacion(score.puntos);
-    if (score.puntos > 7.5) {
-      showMessage(Mensajes.GAME_OVER);
-    }
-  }
-};
-
-export function muestraPuntuacion(puntuacion: number) {
-  const score = document.getElementById("score");
-  if (score !== null && score !== undefined) {
-    score.innerHTML = puntuacion.toString();
+  } else {
+    console.error("El elemento con id newCardShown no es un elemento image");
   }
 }
 
-export function showMessage(mensaje: string) {
-  if (message !== null && message !== undefined) {
+export function showMessage(mensaje: string): void {
+  const message = document.getElementById("message");
+  if (
+    message !== null &&
+    message !== undefined &&
+    message instanceof HTMLElement
+  ) {
     message.innerHTML = mensaje;
-    if (buttonAsk !== null && buttonAsk !== undefined) {
-      buttonAsk.hidden = true;
-    }
-    if (noMoreCards !== null && noMoreCards !== undefined) {
-      noMoreCards.hidden = true;
-    }
-    if (startAgain !== null && startAgain !== undefined) {
-      startAgain.hidden = false;
-    }
+  } else {
+    console.error("El elemento con id message no es un elemento HTML");
   }
 }
 
-export const empezarNuevo = (): void => {
-  score.puntos = 0;
-  pideCarta(score.puntos);
-  showMessage("");
-  if (buttonAsk !== null && buttonAsk !== undefined) {
-    buttonAsk.hidden = false;
+export function buttonStartAgain(mostrar: boolean) {
+  const startAgain = document.getElementById("startAgain");
+  if (
+    startAgain !== null &&
+    startAgain !== undefined &&
+    startAgain instanceof HTMLButtonElement
+  ) {
+    startAgain.hidden = mostrar;
+  } else {
+    console.error("El elemento con id startAgain no es un elemento button");
   }
-  if (noMoreCards !== null && noMoreCards !== undefined) {
-    noMoreCards.hidden = false;
+}
+
+export function buttonNoMoreCards(mostrar: boolean) {
+  const noMoreCards = document.getElementById("noMoreCards");
+  if (
+    noMoreCards !== null &&
+    noMoreCards !== undefined &&
+    noMoreCards instanceof HTMLButtonElement
+  ) {
+    noMoreCards.hidden = mostrar;
+  } else {
+    console.error("El elemento con id noMoreCards no es un elemento button");
   }
-  if (startAgain !== null && startAgain !== undefined) {
-    startAgain.hidden = true;
+}
+
+export function buttonAskShow(mostrar: boolean) {
+  const buttonAsk = document.getElementById("askCard");
+  if (
+    buttonAsk !== null &&
+    buttonAsk !== undefined &&
+    buttonAsk instanceof HTMLButtonElement
+  ) {
+    buttonAsk.hidden = mostrar;
+  } else {
+    console.error("El elemento con id buttonAsk no es un elemento button");
   }
-};
+}
+
+export function buttonWhatWouldHappen(mostrar: boolean) {
+  const whatWouldHappen = document.getElementById("whatWouldHappen");
+  if (
+    whatWouldHappen !== null &&
+    whatWouldHappen !== undefined &&
+    whatWouldHappen instanceof HTMLButtonElement
+  ) {
+    whatWouldHappen.hidden = mostrar;
+  } else {
+    console.error(
+      "El elemento con id whatWouldHappen no es un elemento button"
+    );
+  }
+}
