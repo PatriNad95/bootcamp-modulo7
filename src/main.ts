@@ -4,7 +4,7 @@ import {
   pideCarta,
   plantarse,
   queHubieraPasado,
-} from "./motor";
+} from "./ui";
 import "./style.css";
 
 document.addEventListener("DOMContentLoaded", () => {
