@@ -1,4 +1,5 @@
 import { score } from "./modelo";
+import { vi } from "vitest";
 import {
   obtenerPuntosCarta,
   obtenerValorAleatorio,
@@ -7,6 +8,7 @@ import {
 
 describe("obtenerValorAleatorio", () => {
   it("debe devolver un valor entre 1 y 10", () => {
+    vi.spyOn(Math, "random").mockReturnValue(0.5);
     const valorAleatorio = obtenerValorAleatorio();
     expect(valorAleatorio).toBeGreaterThanOrEqual(1);
     expect(valorAleatorio).toBeLessThanOrEqual(10);
@@ -24,12 +26,16 @@ describe("sumarPuntuacion", () => {
 
 describe("obtenerPuntosCarta", () => {
   it("debería obtener puntos de carta correctos si es menor de 8 devuelve el mismo valor", () => {
-    const puntos = obtenerPuntosCarta(6);
-    expect(puntos).toBe(6);
+    const numeroCarta = 6;
+    const resultadoEsperado = 6;
+    const puntos = obtenerPuntosCarta(numeroCarta);
+    expect(puntos).toBe(resultadoEsperado);
   });
 
   it("debería obtener puntos de carta correctos si es mayor de 8 devuelve 0.5", () => {
-    const puntos = obtenerPuntosCarta(11);
-    expect(puntos).toBe(0.5);
+    const numeroCarta = 11;
+    const resultadoEsperado = 0.5;
+    const puntos = obtenerPuntosCarta(numeroCarta);
+    expect(puntos).toBe(resultadoEsperado);
   });
 });

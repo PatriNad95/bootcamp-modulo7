@@ -5,7 +5,7 @@ import {
   sumarPuntuacion,
 } from "./motor";
 
-export function muestraPuntuacion() {
+function muestraPuntuacion() {
   const scoreHtml = document.getElementById("score");
   if (
     scoreHtml !== null &&
@@ -18,7 +18,7 @@ export function muestraPuntuacion() {
   }
 }
 
-export function pintarCarta(carta: number): void {
+function pintarCarta(carta: number): void {
   const newCardShown = document.getElementById("card");
   if (
     newCardShown !== null &&
@@ -31,7 +31,7 @@ export function pintarCarta(carta: number): void {
   }
 }
 
-export function showMessage(mensaje: string): void {
+function showMessage(mensaje: string): void {
   const message = document.getElementById("message");
   if (
     message !== null &&
@@ -44,7 +44,7 @@ export function showMessage(mensaje: string): void {
   }
 }
 
-export function buttonStartAgain(mostrar: boolean) {
+function buttonStartAgain(mostrar: boolean) {
   const startAgain = document.getElementById("startAgain");
   if (
     startAgain !== null &&
@@ -57,7 +57,7 @@ export function buttonStartAgain(mostrar: boolean) {
   }
 }
 
-export function buttonNoMoreCards(mostrar: boolean) {
+function buttonNoMoreCards(mostrar: boolean) {
   const noMoreCards = document.getElementById("noMoreCards");
   if (
     noMoreCards !== null &&
@@ -70,7 +70,7 @@ export function buttonNoMoreCards(mostrar: boolean) {
   }
 }
 
-export function buttonAskShow(mostrar: boolean) {
+function buttonAskShow(mostrar: boolean) {
   const buttonAsk = document.getElementById("askCard");
   if (
     buttonAsk !== null &&
@@ -83,7 +83,7 @@ export function buttonAskShow(mostrar: boolean) {
   }
 }
 
-export function buttonWhatWouldHappen(mostrar: boolean) {
+function buttonWhatWouldHappen(mostrar: boolean) {
   const whatWouldHappen = document.getElementById("whatWouldHappen");
   if (
     whatWouldHappen !== null &&
@@ -98,7 +98,7 @@ export function buttonWhatWouldHappen(mostrar: boolean) {
   }
 }
 
-export function mostrarCarta(carta: number) {
+function mostrarCarta(carta: number) {
   let card: string;
   switch (carta) {
     case 1: {
@@ -190,7 +190,7 @@ export function initEvents() {
   botonesJugar();
 }
 
-export function seleccionMensaje(): string {
+function seleccionMensaje(): string {
   let mensaje = "";
   if (score.puntos <= 4) {
     mensaje = Mensajes.LESS_FOUR;
