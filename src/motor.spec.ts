@@ -1,26 +1,45 @@
-import { score } from "./modelo";
+import { Estado, score } from "./modelo";
 import { vi } from "vitest";
 import {
+  obtenerEstadoPartida,
   obtenerPuntosCarta,
   obtenerValorAleatorio,
   sumarPuntuacion,
 } from "./motor";
 
 describe("obtenerValorAleatorio", () => {
-  it("debe devolver un valor entre 1 y 10", () => {
+  it("debe devolver el valor esperado", () => {
+    const valor = 6;
     vi.spyOn(Math, "random").mockReturnValue(0.5);
     const valorAleatorio = obtenerValorAleatorio();
-    expect(valorAleatorio).toBeGreaterThanOrEqual(1);
-    expect(valorAleatorio).toBeLessThanOrEqual(10);
+    expect(valorAleatorio).toEqual(valor);
   });
 });
 
 describe("sumarPuntuacion", () => {
   it("debe sumar la puntuación correctamente", () => {
-    const initialScore = { puntos: 0 };
+    const initialScore = 5;
     const carta = 5;
-    sumarPuntuacion(carta);
-    expect(score.puntos).toEqual(initialScore.puntos + carta);
+    const result = sumarPuntuacion(initialScore, carta);
+    expect(result).toEqual(10);
+  });
+});
+
+describe("obtenerEstadoPartida", () => {
+  it("debe ser estado plantada", () => {
+    const puntos = 5;
+    const result = obtenerEstadoPartida(puntos);
+    expect(result).toEqual(Estado.PLANTADA);
+  });
+  it("debe ser estado ganada", () => {
+    const puntos = 7.5;
+    const result = obtenerEstadoPartida(puntos);
+    expect(result).toEqual(Estado.GANADA);
+  });
+  it("debe ser estado perdida", () => {
+    const puntos = 9;
+    const result = obtenerEstadoPartida(puntos);
+    expect(result).toEqual(Estado.PERDIDA);
   });
 });
 

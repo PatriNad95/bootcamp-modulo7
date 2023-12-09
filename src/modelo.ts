@@ -1,9 +1,17 @@
 export interface Score {
   puntos: number;
+  estado: string;
+}
+
+export enum Estado {
+  PLANTADA = "Partida Plantada",
+  PERDIDA = "Partida Perdida",
+  GANADA = "Partida Ganada",
 }
 
 export const score: Score = {
   puntos: 0,
+  estado: Estado.PLANTADA,
 };
 
 export enum Mensajes {

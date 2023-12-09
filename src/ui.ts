@@ -1,5 +1,6 @@
-import { Mensajes, score } from "./modelo";
+import { Estado, Mensajes, score } from "./modelo";
 import {
+  obtenerEstadoPartida,
   obtenerPuntosCarta,
   obtenerValorAleatorio,
   sumarPuntuacion,
@@ -177,7 +178,8 @@ export const pideCarta = (): void => {
   const valorRealCarta: number = calcularCarta(valorAleatorio);
   pintarCarta(valorRealCarta);
   const puntos: number = obtenerPuntosCarta(valorRealCarta);
-  sumarPuntuacion(puntos);
+  score.puntos = sumarPuntuacion(score.puntos, puntos);
+  score.estado = obtenerEstadoPartida(score.puntos);
   muestraPuntuacion();
   revisarPartida();
 };
@@ -192,7 +194,7 @@ export function initEvents() {
 
 function seleccionMensaje(): string {
   let mensaje = "";
-  if (score.puntos <= 4) {
+  if (score.puntos < 5) {
     mensaje = Mensajes.LESS_FOUR;
   } else if (score.puntos === 5) {
     mensaje = Mensajes.EQUAL_FIVE;
@@ -211,7 +213,7 @@ export const queHubieraPasado = (): void => {
   const valorRealCarta: number = calcularCarta(valorAleatorio);
   pintarCarta(valorRealCarta);
   const puntos: number = obtenerPuntosCarta(valorRealCarta);
-  sumarPuntuacion(puntos);
+  score.puntos = sumarPuntuacion(score.puntos, puntos);
   muestraPuntuacion();
   showMessage("Esta puntuación habrias sacado si hubieras seguido jugando");
   botonReset();
@@ -223,10 +225,10 @@ function calcularCarta(valorRealCarta: number): number {
 }
 
 const revisarPartida = (): void => {
-  if (score.puntos === 7.5) {
+  if (score.estado === Estado.GANADA) {
     ganarPartida();
   }
-  if (score.puntos > 7.5) {
+  if (score.estado === Estado.PERDIDA) {
     perderPartida();
   }
 };
